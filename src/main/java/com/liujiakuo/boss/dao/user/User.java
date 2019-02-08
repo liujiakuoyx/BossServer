@@ -9,7 +9,7 @@ public class User{
      * id
      */
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//主键自增
     @Column(name = "uid")
     private Long ID;
 
