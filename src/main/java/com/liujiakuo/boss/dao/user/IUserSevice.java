@@ -1,7 +1,5 @@
 package com.liujiakuo.boss.dao.user;
 
-import com.liujiakuo.boss.bean.user.User;
-
 import java.util.List;
 
 public interface IUserSevice {

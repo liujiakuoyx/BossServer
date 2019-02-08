@@ -1,9 +1,9 @@
 package com.liujiakuo.boss.controller;
 
 import com.liujiakuo.boss.base.http.DataResponse;
-import com.liujiakuo.boss.bean.user.User;
+import com.liujiakuo.boss.dao.user.User;
 import com.liujiakuo.boss.dao.user.UserSeviceImp;
-import com.liujiakuo.boss.utils.TextUtils;
+import com.liujiakuo.boss.utils.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,7 +26,7 @@ public class UserController {
         DataResponse<User> response = null;
         String userKey = request.getParameter("key");
         String pass = request.getParameter("pass");
-        if (TextUtils.isEmpty(userKey) || TextUtils.isEmpty(pass)) {
+        if (DataUtils.isEmpty(userKey) || DataUtils.isEmpty(pass)) {
             //请求参数错误
             response = new DataResponse<>(300, "参数错误");
         } else {

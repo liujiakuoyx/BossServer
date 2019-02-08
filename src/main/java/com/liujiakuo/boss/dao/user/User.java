@@ -1,4 +1,4 @@
-package com.liujiakuo.boss.bean.user;
+package com.liujiakuo.boss.dao.user;
 
 import javax.persistence.*;
 
@@ -12,6 +12,12 @@ public class User{
     @GeneratedValue
     @Column(name = "uid")
     private Long ID;
+
+    /**
+     * 头像
+     */
+    @Column(name = "user_head")
+    private String headUrl;
 
     /**
      * user类型
@@ -43,6 +49,14 @@ public class User{
 
     public void setID(Long ID) {
         this.ID = ID;
+    }
+
+    public String getHeadUrl() {
+        return headUrl;
+    }
+
+    public void setHeadUrl(String headUrl) {
+        this.headUrl = headUrl;
     }
 
     public int getType() {

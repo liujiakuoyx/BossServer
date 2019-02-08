@@ -1,6 +1,5 @@
 package com.liujiakuo.boss.dao.user;
 
-import com.liujiakuo.boss.bean.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
