@@ -1,5 +1,6 @@
 package com.liujiakuo.boss.dao.company;
 
+import com.liujiakuo.boss.base.BaseRepository;
 import com.liujiakuo.boss.dao.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -7,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ICompanyRepository extends JpaRepository<Company, Long> {
+public interface ICompanyRepository extends BaseRepository<Company> {
     final String TABLE_NAME = "company";//表名
     final String USER_KEY = "c_name";//key字段名
 
