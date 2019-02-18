@@ -1,6 +1,9 @@
 package com.liujiakuo.boss.dao.job;
 
 
+import com.liujiakuo.boss.dao.company.Company;
+import com.liujiakuo.boss.dao.user.User;
+
 import javax.naming.Name;
 import javax.persistence.*;
 
@@ -53,29 +56,31 @@ public class Job {
     /**
      * 发布者
      */
-    @Column(name = "j_post_user")
-    private String userKey;
+    @OneToOne
+    @JoinColumn(name = "uid")
+    private User user;
 
     /**
      * 所属公司
      */
-    @Column(name = "j_company_id")
-    private Long companyId;
+    @OneToOne
+    @JoinColumn(name = "c_id")
+    private Company company;
 
-    public String getUserKey() {
-        return userKey;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserKey(String userKey) {
-        this.userKey = userKey;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getCompanyId() {
-        return companyId;
+    public Company getCompany() {
+        return company;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public void setCompany(Company company) {
+        this.company = company;
     }
 
     public Long getID() {
