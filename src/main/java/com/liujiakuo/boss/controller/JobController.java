@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -52,6 +53,7 @@ public class JobController {
             //没有更多的数据
             PageDataResponse<List<PositionBean>> response = new PageDataResponse<>(200, "已无更多数据");
             response.setPage(page);
+            response.setData(new ArrayList<>());
             return response;
         }
         PageDataResponse<List<PositionBean>> response = new PageDataResponse<>(200, "success");
