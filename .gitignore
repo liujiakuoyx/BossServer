@@ -23,3 +23,7 @@
 /nbdist/
 /.nb-gradle/
 /build/
+/out/
+
+### War ###
+*.war
