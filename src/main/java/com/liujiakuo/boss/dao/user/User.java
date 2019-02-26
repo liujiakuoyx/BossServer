@@ -43,6 +43,20 @@ public class User{
     @Column(name = "user_nick")
     private String nick;
 
+    /**
+     * 职务
+     */
+    @Column(name = "user_post")
+    private String post;
+
+    public String getPost() {
+        return post;
+    }
+
+    public void setPost(String post) {
+        this.post = post;
+    }
+
     public Long getID() {
         return ID;
     }

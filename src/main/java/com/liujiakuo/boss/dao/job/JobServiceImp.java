@@ -1,6 +1,9 @@
 package com.liujiakuo.boss.dao.job;
 
+import com.liujiakuo.boss.bean.CompanyInfo;
 import com.liujiakuo.boss.bean.PositionBean;
+import com.liujiakuo.boss.bean.UserInfo;
+import com.liujiakuo.boss.utils.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -65,6 +68,16 @@ public class JobServiceImp implements IJobService {
         return positionBeanList;
     }
 
+    @Override
+    public PositionBean getJobById(String id) {
+        if(DataUtils.isEmpty(id)){
+            return null;
+        }
+        Job job = repository.findById(id);
+        PositionBean bean = convertData(job);
+        return bean;
+    }
+
     private PositionBean convertData(Job job) {
         if (job == null) {
             return null;
@@ -76,19 +89,27 @@ public class JobServiceImp implements IJobService {
         bean.setName(job.getName());
         bean.setSalary(job.getSalary());
         bean.setWorkYears(job.getWorkYears());
-        PositionBean.CompanyInfo companyInfo = new PositionBean.CompanyInfo();
+        CompanyInfo companyInfo = new CompanyInfo();
         bean.setCompany(companyInfo);
         if (null != job.getCompany()) {
+            companyInfo.setCid(String.valueOf(job.getCompany().getID()));
             companyInfo.setHeadUrl(job.getCompany().getHeadUrl());
             companyInfo.setName(job.getCompany().getName());
             companyInfo.setNumber(job.getCompany().getNumber());
             companyInfo.setStage(job.getCompany().getStage());
+            companyInfo.setInfo(job.getCompany().getInfo());
+            companyInfo.setCapital(job.getCompany().getCapital());
+            companyInfo.setPerson(job.getCompany().getPerson());
+            companyInfo.setRegistrationTime(job.getCompany().getRegistrationTime());
+            companyInfo.setWebsite(job.getCompany().getWebsite());
         }
-        PositionBean.UserInfo userInfo = new PositionBean.UserInfo();
+        UserInfo userInfo = new UserInfo();
         bean.setUser(userInfo);
         if (null != job.getUser()) {
+            userInfo.setUid(String.valueOf(job.getUser().getID()));
             userInfo.setHeadUrl(job.getUser().getHeadUrl());
             userInfo.setNick(job.getUser().getNick());
+            userInfo.setPost(job.getUser().getPost());
         }
         return bean;
     }

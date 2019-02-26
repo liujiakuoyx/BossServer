@@ -1,6 +1,7 @@
 package com.liujiakuo.boss.bean;
 
 
+import javax.persistence.Column;
 import java.io.Serializable;
 
 
@@ -111,91 +112,6 @@ public class PositionBean implements Serializable {
 
     public void setCompany(CompanyInfo company) {
         this.company = company;
-    }
-
-    public static class CompanyInfo {
-
-        /**
-         * 公司名称
-         */
-        private String name;
-
-        /**
-         * 头像
-         */
-        private String headUrl;
-
-        /**
-         * 融资阶段
-         * 按等级依次为 不需要融资、未融资、天使轮、A、B、C、D及以上、已上市。
-         */
-        private String stage;
-
-        /**
-         * 员工人数
-         * 0-20、20-99、100-499、500-1000、1000-9999、10000以上
-         */
-        private String number;
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getHeadUrl() {
-            return headUrl;
-        }
-
-        public void setHeadUrl(String headUrl) {
-            this.headUrl = headUrl;
-        }
-
-        public String getStage() {
-            return stage;
-        }
-
-        public void setStage(String stage) {
-            this.stage = stage;
-        }
-
-        public String getNumber() {
-            return number;
-        }
-
-        public void setNumber(String number) {
-            this.number = number;
-        }
-    }
-
-    public static class UserInfo {
-        /**
-         * 头像
-         */
-        private String headUrl;
-
-        /**
-         * user昵称
-         */
-        private String nick;
-
-        public String getHeadUrl() {
-            return headUrl;
-        }
-
-        public void setHeadUrl(String headUrl) {
-            this.headUrl = headUrl;
-        }
-
-        public String getNick() {
-            return nick;
-        }
-
-        public void setNick(String nick) {
-            this.nick = nick;
-        }
     }
 
 }

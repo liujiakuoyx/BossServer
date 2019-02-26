@@ -1,6 +1,7 @@
 package com.liujiakuo.boss.controller;
 
 import com.liujiakuo.boss.base.http.DataResponse;
+import com.liujiakuo.boss.bean.UserInfo;
 import com.liujiakuo.boss.dao.user.User;
 import com.liujiakuo.boss.dao.user.UserSeviceImp;
 import com.liujiakuo.boss.utils.DataUtils;
@@ -38,11 +39,23 @@ public class UserController {
                 //登录成功
                 response = new DataResponse<>(200, "success");
                 response.setData(user);
-            }else {
+            } else {
                 //密码错误
                 response = new DataResponse<>(400, "密码错误");
             }
         }
+        return response;
+    }
+
+    @RequestMapping("/getUserInfo")
+    public DataResponse<UserInfo> getUserInfo(HttpServletRequest request) {
+        String uid = request.getParameter("uid");
+        if (DataUtils.isEmpty(uid)) {
+            return new DataResponse<>(300, "parameter error");
+        }
+        UserInfo userInfo = userSeviceImp.findUserById(uid);
+        DataResponse<UserInfo> response = new DataResponse<>(200, "success");
+        response.setData(userInfo);
         return response;
     }
 }

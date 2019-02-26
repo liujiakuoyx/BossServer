@@ -9,9 +9,13 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ICompanyRepository extends BaseRepository<Company> {
-    final String TABLE_NAME = "company";//表名
-    final String USER_KEY = "c_name";//key字段名
+    String TABLE_NAME = "company";//表名
+    String COMPANY_KEY = "c_name";//key字段名
+    String COMPANY_ID = "c_id";
 
-    @Query(value = "select * from " + TABLE_NAME + " where " + USER_KEY + " like %:name%", nativeQuery = true)
-    public List<Company> findLikeName(@Param("name") String name);
+    @Query(value = "select * from " + TABLE_NAME + " where " + COMPANY_KEY + " like %:name%", nativeQuery = true)
+    List<Company> findLikeName(@Param("name") String name);
+
+    @Query(value = "select * from " + TABLE_NAME + " where " + COMPANY_ID + " =:id", nativeQuery = true)
+    Company findById(@Param("id") String id);
 }

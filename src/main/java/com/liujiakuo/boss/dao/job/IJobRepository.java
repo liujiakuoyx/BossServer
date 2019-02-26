@@ -12,8 +12,11 @@ import java.util.List;
 public interface IJobRepository extends BaseRepository<Job> {
     String TABLE_NAME = "job";//表名
     String USER_KEY = "j_name";//key字段名
+    String JOB_ID = "j_id";//key字段名
 
     @Query(value = "select * from " + TABLE_NAME + " where " + USER_KEY + " like %:name%", nativeQuery = true)
     List<Job> findLikeName(@Param("name") String name);
 
+    @Query(value = "select * from " + TABLE_NAME + " where " + JOB_ID + " =:id", nativeQuery = true)
+    Job findById(@Param("id") String id);
 }

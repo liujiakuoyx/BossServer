@@ -1,5 +1,7 @@
 package com.liujiakuo.boss.dao.user;
 
+import com.liujiakuo.boss.bean.UserInfo;
+
 import java.util.List;
 
 public interface IUserSevice {
@@ -27,4 +29,9 @@ public interface IUserSevice {
      * 登录
      */
     User findUserByKey(String key);
+
+    /**
+     * 通过id获取user
+     */
+    UserInfo findUserById(String id);
 }

@@ -6,6 +6,7 @@ import com.liujiakuo.boss.bean.PositionBean;
 import com.liujiakuo.boss.dao.job.Job;
 import com.liujiakuo.boss.dao.job.JobServiceImp;
 import com.liujiakuo.boss.utils.DataUtils;
+import javafx.geometry.Pos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,6 +60,22 @@ public class JobController {
         PageDataResponse<List<PositionBean>> response = new PageDataResponse<>(200, "success");
         response.setData(jobList);
         response.setPage(++page);//增加当前页
+        return response;
+    }
+
+    /**
+     * 通过id获取职位信息
+     */
+    @RequestMapping("/jobDetail")
+    public DataResponse<PositionBean> getDetail(HttpServletRequest request){
+        DataResponse<PositionBean> response;
+        String jobId = request.getParameter("jid");
+        if(DataUtils.isEmpty(jobId)){
+            return new DataResponse(300,"parameter error");
+        }
+        PositionBean positionBean = jobServiceImp.getJobById(jobId);
+        response = new DataResponse<>(200,"success");
+        response.setData(positionBean);
         return response;
     }
 }

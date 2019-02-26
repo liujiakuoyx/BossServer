@@ -1,5 +1,6 @@
 package com.liujiakuo.boss.dao.company;
 
+import com.liujiakuo.boss.bean.CompanyInfo;
 import com.liujiakuo.boss.utils.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -54,5 +55,35 @@ public class CompanyService implements ICompanyService {
         Pageable pageable = PageRequest.of(page, PAGE_SIZE);
         Page<Company> allPage = repository.findAll(pageable);
         return allPage.getContent();
+    }
+
+    @Override
+    public CompanyInfo findById(String id) {
+        if(DataUtils.isEmpty(id)){
+            return null;
+        }
+        Company company = repository.findById(id);
+        return convertData(company);
+    }
+
+    /**
+     * 数据转换
+     */
+    private CompanyInfo convertData(Company company) {
+        if (company == null) {
+            return null;
+        }
+        CompanyInfo companyInfo = new CompanyInfo();
+        companyInfo.setCid(String.valueOf(company.getID()));
+        companyInfo.setHeadUrl(company.getHeadUrl());
+        companyInfo.setName(company.getName());
+        companyInfo.setNumber(company.getNumber());
+        companyInfo.setStage(company.getStage());
+        companyInfo.setInfo(company.getInfo());
+        companyInfo.setCapital(company.getCapital());
+        companyInfo.setPerson(company.getPerson());
+        companyInfo.setRegistrationTime(company.getRegistrationTime());
+        companyInfo.setWebsite(company.getWebsite());
+        return companyInfo;
     }
 }

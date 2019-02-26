@@ -35,4 +35,9 @@ public interface IJobService {
      * 分页加载职位数据
      */
     List<PositionBean> getJobList(int page);
+
+    /**
+     * 通过id查找
+     */
+    PositionBean getJobById(String id);
 }

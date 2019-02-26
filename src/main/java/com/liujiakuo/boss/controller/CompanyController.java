@@ -1,6 +1,7 @@
 package com.liujiakuo.boss.controller;
 
 import com.liujiakuo.boss.base.http.DataResponse;
+import com.liujiakuo.boss.bean.CompanyInfo;
 import com.liujiakuo.boss.dao.company.Company;
 import com.liujiakuo.boss.dao.company.CompanyService;
 import com.liujiakuo.boss.utils.DataUtils;
@@ -28,6 +29,20 @@ public class CompanyController {
             response = new DataResponse<>(200, "success");
             response.setData(companys);
         }
+        return response;
+    }
+
+    /**
+     * 通过id获取公司
+     */
+    @RequestMapping("/getCompanyInfo")
+    public DataResponse<CompanyInfo> getCompanyInfo(HttpServletRequest request) {
+        String cid = request.getParameter("cid");
+        if(DataUtils.isEmpty(cid)){
+            return new DataResponse(300,"parameter error");
+        }
+        DataResponse<CompanyInfo> response = new DataResponse<>(200,"success");
+        response.setData(companyService.findById(cid));
         return response;
     }
 }
