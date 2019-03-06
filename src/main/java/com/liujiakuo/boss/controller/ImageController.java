@@ -1,5 +1,6 @@
 package com.liujiakuo.boss.controller;
 
+import com.liujiakuo.boss.base.http.MessageResponse;
 import com.liujiakuo.boss.utils.DataUtils;
 import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
@@ -11,15 +12,15 @@ import java.io.*;
 @RestController
 @RequestMapping("/image")
 public class ImageController {
-    private final String IMAGE_FILE_PATH = "/Users/liujiakuo/boss/image/";
+    private final String IMAGE_FILE_PATH = "/boss/image/";
 
     /**
      * 上传图片
      */
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public void upload(@RequestParam("image") MultipartFile image) {
+    public MessageResponse upload(@RequestParam("image") MultipartFile image) {
         if (image.isEmpty()) {
-            return;
+            return new MessageResponse(3000,"isEmpty");
         }
         try {
             //文件名取md5，防止重复文件
@@ -43,10 +44,11 @@ public class ImageController {
             } else {
                 System.out.println("md5 equals,image exists");
             }
+            return new MessageResponse(200,"success");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        return new MessageResponse(3000,"error");
     }
 
     /**
