@@ -1,5 +1,7 @@
 package com.liujiakuo.boss.utils;
 
+import java.io.Closeable;
+import java.io.IOException;
 import java.util.List;
 
 public class DataUtils {
@@ -11,5 +13,15 @@ public class DataUtils {
             return ((List) data).isEmpty();
         }
         return data != null;
+    }
+
+    public static void closeStream(Closeable closeable){
+        if(closeable!=null){
+            try {
+                closeable.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
