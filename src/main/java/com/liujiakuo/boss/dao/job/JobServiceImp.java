@@ -89,6 +89,7 @@ public class JobServiceImp implements IJobService {
         bean.setName(job.getName());
         bean.setSalary(job.getSalary());
         bean.setWorkYears(job.getWorkYears());
+        bean.setPid(String.valueOf(job.getID()));
         CompanyInfo companyInfo = new CompanyInfo();
         bean.setCompany(companyInfo);
         if (null != job.getCompany()) {
