@@ -34,14 +34,14 @@ public class UserController {
             User user = userSeviceImp.findUserByKey(userKey);
             if (user == null) {
                 //用户不存在
-                response = new DataResponse<>(400, "用户不存在");
+                response = new DataResponse<>(4000, "用户不存在");
             } else if (user.getPass().equals(pass)) {
                 //登录成功
                 response = new DataResponse<>(200, "success");
                 response.setData(user);
             } else {
                 //密码错误
-                response = new DataResponse<>(400, "密码错误");
+                response = new DataResponse<>(5000, "密码错误");
             }
         }
         return response;
