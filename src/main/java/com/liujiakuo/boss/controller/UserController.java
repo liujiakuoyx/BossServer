@@ -1,11 +1,14 @@
 package com.liujiakuo.boss.controller;
 
 import com.liujiakuo.boss.base.http.DataResponse;
+import com.liujiakuo.boss.base.http.MessageResponse;
 import com.liujiakuo.boss.bean.UserInfo;
 import com.liujiakuo.boss.dao.user.User;
 import com.liujiakuo.boss.dao.user.UserSeviceImp;
 import com.liujiakuo.boss.utils.DataUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -57,5 +60,26 @@ public class UserController {
         DataResponse<UserInfo> response = new DataResponse<>(200, "success");
         response.setData(userInfo);
         return response;
+    }
+
+    /**
+     * code：
+     * 2000 success
+     * 2001 账户已存在
+     * 2002 参数错误
+     */
+    @PostMapping("/register")
+    public MessageResponse register(@RequestBody User userInfo) {
+        if (userInfo == null || DataUtils.isEmpty(userInfo.getKey())) {
+            return new MessageResponse(2002, "参数错误");
+        }
+        User user = userSeviceImp.findUserByKey(userInfo.getKey());
+        if (user != null) {
+            return new MessageResponse(2001, "用户已存在");
+        } else {
+            //插入用户
+            userSeviceImp.insertUser(user);
+            return new MessageResponse(2000, "注册成功");
+        }
     }
 }
